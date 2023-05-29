@@ -81,7 +81,7 @@
 % ---
 \titulo{Gramáticas e Hierarquia de Chomsky}
 \autor{ Guilherme Dantas de Andrade Rodrigues e 
-João Pedro Araujo}
+João Pedro Araujo Queiroz Barbosa}
 \local{Brasil}
 \data{28/05/2023}
 % ---
