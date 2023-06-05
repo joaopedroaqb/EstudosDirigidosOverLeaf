@@ -1,0 +1,456 @@
+% abtex2-modelo-artigo.tex, v-1.9.2 laurocesar
+% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Artigo Acadêmico em conformidade com
+% ABNT NBR 6022:2003: Informação e documentação - Artigo em publicação 
+% periódica científica impressa - Apresentação
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	article,			% indica que é um artigo acadêmico
+	11pt,				% tamanho da fonte
+	oneside,			% para impressão apenas no verso. Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE % títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	sumario=tradicional
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de simbolos
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+		
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+% ---
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Teorema da Incompletude de Gödel}
+\autor{João Pedro Araujo Queiroz Barbosa \and Guilherme Dantas de Andrade Rodrigues}
+
+\local{Brasil}
+\data{05/06/2023}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={Modelo de artigo científico com abnTeX2},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{atigo científico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ---
+% Altera as margens padrões
+% ---
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% Espaçamento simples
+\SingleSpacing
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+
+%---
+%
+% Se desejar escrever o artigo em duas colunas, descomente a linha abaixo
+% e a linha com o texto ``FIM DE ARTIGO EM DUAS COLUNAS''.
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+%
+%---
+% página de titulo
+\maketitle
+
+% resumo em português
+% \begin{resumoumacoluna}
+%  Conforme a ABNT NBR 6022:2003, o resumo é elemento obrigatório, constituído de
+%  uma sequência de frases concisas e objetivas e não de uma simples enumeração
+%  de tópicos, não ultrapassando 250 palavras, seguido, logo abaixo, das palavras
+%  representativas do conteúdo do trabalho, isto é, palavras-chave e/ou
+%  descritores, conforme a NBR 6028. (\ldots) As palavras-chave devem figurar logo
+%  abaixo do resumo, antecedidas da expressão Palavras-chave:, separadas entre si por
+%  ponto e finalizadas também por ponto.
+ 
+%  \vspace{\onelineskip}
+ 
+%  \noindent
+%  \textbf{Palavras-chaves}: latex. abntex. editoração de texto.
+% \end{resumoumacoluna}
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introdução
+% ----------------------------------------------------------
+\section*{Introdução}
+\addcontentsline{toc}{section}{Introdução}
+
+No século XX um homem desabou com a matemática, de que maneira nos
+perguntamos. Ele provou matematicamente que muitas coisas da matemática não
+podem ser provadas. O objetivo deste estudo dirigido é entender os fundamentos de
+teoremas na teoria da computação quanto na lógica matemática.
+O teorema da incompletude de Gödel, formulado pelo matemático Kurt Gödel em
+1931, é um dos resultados mais impressionantes da lógica matemática e tem
+profundas implicações para a teoria da computação.
+O teorema da incompletude de Gödel mostra que existem afirmações matemáticas
+que são verdadeiras, mas não podem ser demonstradas com base nos axiomas e
+regras de inferência desse sistema.
+Essa descoberta abalou profundamente a lógica matemática e teve implicações
+importantes para a teoria da computação. Antes do teorema de Gödel, acreditava-se
+ser possível criar um sistema formal completo onde todas as verdades matemáticas
+pudessem ser provadas.
+Essa incompletude tem implicações diretas para a teoria da computação, pois
+coloca limites fundamentais na capacidade de sistemas e algoritmos formais de lidar
+com certas questões matemáticas.
+
+% ----------------------------------------------------------
+% Seção de explicações
+% ----------------------------------------------------------
+\section{Fundamentos da Lógica Matemática}
+
+Fundamentos da Lógica Matemática se baseia no uso de linguagens formais para
+expressar proposições e argumentos de forma precisa e não ambígua, além de
+estudar os conectivos lógicos, regras de inferência e a teoria da prova. Através
+desses fundamentos, a lógica matemática permite analisar e avaliar a validade dos
+argumentos, garantindo a consistência e coerência dos sistemas lógicos utilizados
+na matemática e em outras áreas do conhecimento. A lógica matemática
+desempenha um papel crucial na estruturação do conhecimento matemático. Ela
+fornece os alicerces para a formulação precisa e rigorosa de teoremas, permitindo
+que os matemáticos provem resultados e estabeleçam relações entre conceitos de
+forma consistente.
+ \\ Temos que o objetivo é chegar a afirmações tão óbvias que as aceitamos como
+verdade intuitivamente, mesmo sem provas. Essas afirmações se chamam axiomas.
+Os símbolos em um sistema formal podem incluir símbolos lógicos (como $\wedge$ para "e", $\lor$ para "ou" e $\to$ para "implica"), símbolos de quantificação (como $\forall$ para "para
+todo" e $\exists$ para "existe") e símbolos específicos de domínios matemáticos (como +
+para adição e x para multiplicação).
+
+
+
+
+\subsection{Teorema da Incompletude de Gödel}
+
+O teorema da incompletude de Gödel, afirma que em qualquer sistema formal capaz
+de expressar a aritmética elementar, existem afirmações verdadeiras que não
+podem ser provadas dentro desse sistema. Isso significa que nenhum sistema
+formal pode ser completo o suficiente para capturar toda a verdade matemática,
+deixando lacunas e limitações na capacidade de provar certas afirmações
+matemáticas.
+O teorema estabelece limitações fundamentais para os sistemas formais da
+matemática. A formulação geral desse teorema é baseada na ideia de
+autorreferência e auto representação dentro de um sistema formal.
+E também que o teorema da incompletude de Gödel estimulou o desenvolvimento
+de novas áreas de pesquisa na teoria computacional, como a teoria da
+complexidade e da computabilidade. Essas áreas exploram as limitações de
+algoritmos e sistemas computacionais em geral e são baseadas em insights
+fornecidos pelo teorema de Gödel.
+
+
+
+\section{Demonstração do Teorema da Incompletude de Gödel}
+
+A demonstração original do Teorema da completude de Gödel utiliza conceitos e
+formalismo de difícil compreensão. A versão abaixo propõe uma abordagem
+moderna deste teorema, que se mantém, não obstante, fiel a todos os passos e
+ideias importantes originais.
+A prova dos teoremas de Gödel se baseia em um equivalente matemático de uma
+frase. A grande sacada foi criar uma sequência de símbolos, que, traduzida para a
+linguagem falada, significa “esta afirmação não pode ser provada".
+A incompletude de Gödel demonstra que em um sistema formal consistente capaz
+de expressar a aritmética elementar, é impossível provar sua própria consistência.
+Isso é alcançado por meio de uma afirmação autorreferente que diz que não há
+prova de sua própria consistência, contornando qualquer tentativa de estabelecer a
+certeza absoluta dentro do sistema. Essa demonstração é baseada no argumento
+diagonal de Gödel e na codificação de Gödel, que atribui números a afirmações,
+permitindo a formulação de afirmações que se referem a si mesmas.
+
+
+
+
+\section{Implicações e Aplicações do Teorema}
+
+O Teorema da Incompletude de Gödel tem implicações profundas e amplas em
+várias áreas da matemática e da computação, como por exemplo: Limitações dos
+sistemas formais, teoria da computabilidade, Lógica e fundamentos da matemática,
+filosofia, dentre outros campos ele teve atuação.
+Limitações dos sistemas formais: O teorema de Gödel estabelece que nenhum
+sistema formal completo e consistente pode capturar toda a verdade matemática.
+Teoria da computabilidade: O teorema de Gödel foi uma das bases para o
+desenvolvimento da teoria da computabilidade.Ele demonstra que existem
+problemas matemáticos que são indecidíveis, ou seja, não podem ser resolvidos por
+meio de algoritmos computacionais.
+Lógica e fundamentos da matemática: O teorema de Gödel influenciou os estudos
+sobre os fundamentos da matemática e a lógica matemática.
+Filosofia da mente: O teorema também teve implicações para a filosofia da mente.
+Ele mostrou que existem afirmações verdadeiras que não podem ser provadas,
+mesmo que sejam intuitivamente evidentes.
+O teorema tem implicações profundas que vão além da matemática pura. Ele afeta
+a forma como entendemos os sistemas formais, a computabilidade, a lógica
+matemática e até mesmo a filosofia da mente.
+
+
+\section{Desdobramentos e Trabalhos Posteriores}
+
+Desde que o teorema da incompletude de Gödel foi formulado, muito mais trabalho
+foi feito para estender e melhorar os resultados estabelecidos por Gödel. Vários
+matemáticos e lógicos, como Gerhard Gentzen e Alfred Tarski, forneceram novas
+perspectivas e provas adicionais que complementam e ampliam os resultados
+originais. Este trabalho de acompanhamento ajudou a fortalecer e aprofundar nossa
+compreensão das limitações e consequências da incompletude de Gödel. Esforços
+têm sido feitos para desenvolver estruturas formais mais robustas e abordagens
+alternativas.
+\\ Para superar as limitações impostas pelo teorema. Por exemplo, o sistema de
+axiomas de Peano e Zermelo-Fraenkel foi expandido e modificado para incluir
+princípios adicionais, como o axioma da escolha, em uma tentativa de superar as
+limitações de Gödel. Abordagens alternativas à lógica clássica, como lógica modal
+e lógica contraditória, também foram exploradas para lidar com paradoxos e
+contradições decorrentes da incompletude. Embora essas tentativas tenham feito
+progressos significativos, ainda não foi encontrada nenhuma solução completa que
+supere completamente as limitações impostas pelo teorema, e a incompletude
+continua sendo um tópico de pesquisa ativo e desafiador em matemática e lógica.
+
+
+\section{Conclusão}
+
+No estudo dirigido sobre a incompletude de Gödel, foram abordados os principais
+pontos relacionados a esse teorema e suas implicações na teoria da computação e
+na lógica matemática. Foi destacada a importância do Teorema da Incompletude de
+Gödel como um dos resultados mais significativos da lógica matemática, mostrando
+que existem afirmações verdadeiras que não podem ser provadas dentro de um
+sistema formal consistente.
+Além disso, a importância deste teorema na teoria da computação é enfatizada
+porque estabelece limites fundamentais para sistemas formais e algoritmos em
+geral. Estudos de supervisão promovem pesquisas adicionais sobre o significado do
+teorema de Gödel e suas implicações para a ciência da computação, como teoria da
+complexidade e computabilidade, que estudam as limitações e problemas intratáveis
+de sistemas computacionais.
+Portanto, o estudo da incompletude de Gödel visa entender a base desse teorema e
+aumentar a consciência de seu significado na teoria computacional e na lógica
+matemática, além de aprofundar a pesquisa nesse campo para melhorar nosso
+conhecimento dos limites da computação e a natureza da verdade matemática
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+% \bookmarksetup{startatroot}% 
+% ---
+
+% ---
+% Conclusão
+% ---
+% \section*{Considerações finais}
+% \addcontentsline{toc}{section}{Considerações finais}
+
+% \lipsum[1]
+
+% \begin{citacao}
+% \lipsum[2]
+% \end{citacao}
+
+% \lipsum[3]
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+% ---
+% Título e resumo em língua estrangeira
+% ---
+
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+
+% titulo em inglês
+% \titulo{Canonical academic article model with \abnTeX}
+% \emptythanks
+% \maketitle
+
+% % resumo em português
+% \renewcommand{\resumoname}{Abstract}
+% \begin{resumoumacoluna}
+%  \begin{otherlanguage*}{english}
+%    According to ABNT NBR 6022:2003, an abstract in foreign language is a back
+%    matter mandatory element.
+
+%    \vspace{\onelineskip}
+ 
+%    \noindent
+%    \textbf{Key-words}: latex. abntex.
+%  \end{otherlanguage*}  
+% \end{resumoumacoluna}
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{abntex2-modelo-references}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Há diversas soluções prontas para glossário em LaTeX. 
+% Consulte o manual do abnTeX2 para obter sugestões.
+%
+%\glossary
+
+\begin{enumerate}
+    \item \textbf{OpenAI. "ChatGPT." Chatbot de linguagem natural baseado na arquitetura GPT-3.5.
+2023. Disponivel em:}
+\\ \url {https://chat.openai.com/?model=text-davinci-002-render-sha}
+
+\item \textbf{O que são e como funcionam os teoremas da incompletude de Gödel. Super
+interessante. disponivel em: }
+\\  \url {https://super.abril.com.br/especiais/os-teoremas-da-incompletude-de-godel#:~:text=
+Esse%20é%20o%20primeiro%20teorema%20de%20Gödel%3A%20qualquer%20si
+stema%20de,“por%20fora”%20do%20sistema.}
+
+\item \textbf{O TEOREMA DA INCOMPLETUDE DE GÖDEL NO ÂMBITO DE ALGUNS
+TEOREMAS DE IMPOSSIBILIDADE. Batistela. R. disponível em:}
+\\ \url {https://sepq.org.br/eventos/VI-SIPEQ/documentos/28688189862/10}
+
+\item \textbf{Lógica Matemática. Gouveia. R. Disponivel em:}
+\\ \url {https://www.todamateria.com.br/logica-matematica/}
+
+\item \textbf{O teorema da incompletude de Gödel. Borges. H. Disponivel em:}
+\\ \url {https://www.puc-rio.br/ensinopesq/ccpg/pibic/relatorio_resumo2019/download/relatorios/CTCH/FIL/FIL-Hugo%20Hoffmann%20Borges.pdf}
+
+
+
+\end{enumerate}
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+
+% ---
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+%\anexos
+% \begin{anexosenv}
+
+% % ---
+% \chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+% parturient montes nascetur ridiculus mus}
+% % ---
+
+% \lipsum[31]
+
+% \end{anexosenv}
+
+\end{document}
