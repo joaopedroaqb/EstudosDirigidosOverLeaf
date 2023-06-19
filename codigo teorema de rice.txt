@@ -1,0 +1,310 @@
+% abtex2-modelo-artigo.tex, v-1.9.2 laurocesar
+% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Artigo Acadêmico em conformidade com
+% ABNT NBR 6022:2003: Informação e documentação - Artigo em publicação 
+% periódica científica impressa - Apresentação
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	article,			% indica que é um artigo acadêmico
+	11pt,				% tamanho da fonte
+	oneside,			% para impressão apenas no verso. Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE % títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	sumario=tradicional
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de simbolos
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+		
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+% ---
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Problemas Indecidíveis e o Teorema de
+Rice}
+\autor{Guilherme Dantas de Andrade Rodrigues \and João Pedro Araujo Queiroz Barbosa}
+\local{Brasil}
+\data{19/06/2023}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={Modelo de artigo científico com abnTeX2},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{atigo científico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ---
+% Altera as margens padrões
+% ---
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% Espaçamento simples
+\SingleSpacing
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+
+%---
+%
+% Se desejar escrever o artigo em duas colunas, descomente a linha abaixo
+% e a linha com o texto ``FIM DE ARTIGO EM DUAS COLUNAS''.
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+%
+%---
+% página de titulo
+\maketitle
+
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introdução
+% ----------------------------------------------------------
+\section*{Introdução}
+\addcontentsline{toc}{section}{Introdução}
+
+O Teorema de Rice é um resultado fundamental da teoria da computabilidade, que estabelece uma limitação sobre o que pode ser decidido a respeito do comportamento das funções computáveis. Especificamente, o teorema afirma que qualquer propriedade não trivial das funções computáveis é indecidível.
+
+Uma propriedade é considerada não trivial se existem funções computáveis que possuem essa propriedade e outras funções computáveis que não a possuem. Por exemplo, a propriedade "uma função computável calcula o fatorial de um número" é uma propriedade não trivial, pois existem funções que computam o fatorial e outras que não o fazem.
+
+
+% ----------------------------------------------------------
+% Seção de explicações
+% ----------------------------------------------------------
+\section{Teoria da Computabilidade}
+O termo "computável" foi introduzido por Alan Turing em seu trabalho revolucionário de 1936, intitulado "Sobre Números Computáveis, com uma Aplicação ao Problema da Decisão". Nesse artigo, Turing propôs uma definição formal de computabilidade, com o objetivo de determinar quais números reais podem ser calculados de maneira finita, utilizando recursos limitados.
+
+Turing sustentou que o conjunto de números reais computáveis corresponde ao conjunto de funções ou predicados que podem ser calculados. Ele apresentou um conceito teórico denominado "máquina de computar" para descrever os processos envolvidos na computação de um número.
+
+Essa máquina de computador, posteriormente conhecida como Máquina de Turing, é composta por uma fita infinita dividida em células, onde cada célula pode armazenar um símbolo. Uma cabeça de leitura/escrita é capaz de ler o símbolo atual em uma célula e tomar decisões com base nesse símbolo. A máquina também possui um conjunto de regras que determinam como o estado interno da máquina e a posição da cabeça devem ser atualizados em resposta ao símbolo lido.
+
+Turing demonstrou que qualquer função que pudesse ser calculada por um procedimento mecânico ou algoritmo poderia ser simulada por uma Máquina de Turing. Isso implicava que o conjunto de números reais cuja expansão decimal pode ser calculada em tempo finito, usando uma Máquina de Turing, é exatamente o conjunto de números computáveis.
+
+Dessa forma, Turing estabeleceu os fundamentos teóricos da computabilidade, revelando limites intrínsecos para o que pode ser calculado. Se um número não puder ser computado por uma Máquina de Turing, ele é considerado não computável. Essa descoberta teve implicações profundas no campo da teoria da computação e contribuiu para o desenvolvimento subsequente de conceitos como a decidibilidade e a complexidade computacional.
+
+
+\subsection{Problemas decidíveis}
+
+Os problemas decidíveis são os quais existe um algoritmo eficiente capaz de gerar uma resposta correta em um número finito de etapas. Em outras palavras, é possível ter um processo que termina em um tempo finito que fornecerá  uma solução precisa para o um determinado problema.
+
+Um problema é considerado decidível quando uma máquina de Turing, ou qualquer modelo computacional equivalente, pode resolver o problema de forma determinística. Isso implica que há uma sequência de etapas que a máquina de Turing deve seguir para que ela chegue a uma resposta correta em um tempo finito.
+
+Um exemplo comum  decidível é verificar se um número é primo. Existem algoritmos conhecidos, que podem ser aplicados para verificar se um número é divisível apenas por 1 e por ele mesmo. Esses algoritmos possuem uma sequência de passos claramente definidos e sempre terminam em um número finito de iterações, resultando em uma resposta correta.
+
+
+
+\subsection{Problemas indecidíveis}
+
+Problemas ou Linguagens Indecidíveis são aqueles para os quais não há um algoritmo capaz de decidir de maneira geral se uma instância específica pertence à linguagem ou não. Em outras palavras, não existe uma Máquina de Turing que possa determinar corretamente, em todos os casos, se uma entrada está na linguagem em questão.
+
+Isso implica que, independentemente da potência da máquina de computação utilizada, não será possível resolver todos os casos desses problemas ou linguagens específicas. Não há um algoritmo que possa oferecer uma resposta definitiva para todas as instâncias desses problemas.
+
+Essa ideia de problemas ou linguagens indecidíveis foi estabelecida pelos pioneiros da teoria da computação, incluindo Alan Turing. Ela tem implicações significativas na compreensão dos limites da computação e no desenvolvimento de algoritmos eficientes para resolver problemas específicos.
+
+Um exemplo clássico é o de problema de parada:
+Dada uma Máquina de Turing genérica M e uma entrada genérica W, não existe uma Máquina de Turing M capaz de decidir se M executa uma computação que aborta (para), quando começa um processamento em uma configuração inicial Q0W
+
+
+
+\section{Teorema de Rice}
+
+Uma das consequências do problema da parada ser provado como um problema indecidível é o chamado teorema de Rice que é conhecido também por the Rice-Myhill-Shapiro theorem.
+O teorema de Rice diz que todo o teste de qualquer propriedade que não sejam triviais relativas a linguagens reconhecidas por máquinas de Turing é indecidível.
+A Teoria de Rice desempenha um papel crucial na teoria da computabilidade, teoria da linguagem formal e no estudo da complexidade computacional. Ela é fundamental para estabelecer os limites e as capacidades dos algoritmos e das máquinas de Turing. Além disso, essa teoria contribui significativamente para o desenvolvimento de teorias e técnicas essenciais na área da ciência da computação.
+
+\subsection{Exemplo}
+
+Seja P um problema sobre máquinas de Turing satisfazendo as seguintes propriedades:
+\\1. para quaisquer máquinas M1 e M2, onde L(M1) = L(M2), temos que (M1) pertence a P se e somente se (M2) pertence a P. Em outras palavras, M pertence a P dependendo apenas da linguagem reconhecida por M.
+\\2. Existem M1 e M2 tais que (M1) pertence a P e (M2) não pertence a P. Em outras palavras, P não é trivial.
+Temos que P é indecidível.
+
+
+\subsection{Ideia da prova}
+
+Suponha que E é decidível por uma máquina de Turing R, usaremos esta suposição para construir uma máquina de Turing S que decide a máquina M definida no problema da parada, chegando assim em uma prova por contradição.
+Seja M1 uma máquina tal que (M1) pertence a P e M2 uma máquina tal que (M2) não pertence a P, A idéia de usar R para construir uma S que decide M é a seguinte: Dada uma máquina D como entrada, modificamos D, de modo a obter uma máquina correspondente D’ tal que D’ se comporte como M1, se D aceita W e se comporta como M2, caso contrário. Assim, o problema de decidir se D aceita W se reduz ao problema de decidir se (D’) pertence a P.
+A máquina S que decide M usando R é definida da seguinte forma:
+\\S = Entrada: (D,w) , onde D é uma máquina de Turing e w é uma cadeia
+\\1. Construa a seguinte máquina de Turing D’:
+\\D’ = Entrada: cadeia w
+\\i. Executa D e M2 em paralelo ate chegar ao momento em que D e M2 param.
+\\ii. Se D aceita w, então executa M1 sobre w;
+\\se M1 aceita, aceite; se M1 rejeita, rejeite.
+\\iii. Se D rejeita w então
+\\Se M2 aceita, aceite; se M2 rejeita, rejeite.
+\\2. Execute R sobre a entrada (D’)
+\\3. Se R aceita, então aceite; se R rejeita, então rejeite.
+\\É importante ressaltar que o teorema de Rice é aplicado às propriedades das linguagens que são aceitas pelas máquinas de Turing, não às máquinas de Turing em si propriamente ditas.
+
+
+
+\section{Conclusão}
+
+Concluindo então, o teorema de Rice e a teoria da computabilidade desempenham um papel crucial na ciência da computação, oferecendo uma compreensão profunda dos limites e das capacidades dos algoritmos e das máquinas de Turing. Ao estabelecer a indecidibilidade de propriedades não triviais das linguagens reconhecidas por máquinas de Turing, o teorema de Rice destaca as limitações inerentes na resolução prática de problemas relacionados a essas propriedades.
+
+Além disso, a Teoria de Rice desempenha um papel significativo no desenvolvimento de conceitos e técnicas fundamentais na teoria da linguagem formal e na complexidade computacional. Ela nos alerta para a complexidade e a intratabilidade de certos problemas, incentivando uma abordagem cautelosa e específica no desenvolvimento de algoritmos e na solução de problemas do mundo real.
+
+Embora haja limitações em termos de resolução prática, o teorema de Rice e a teoria da computabilidade fornecem uma base teórica sólida que impulsiona a pesquisa e a inovação na área da ciência da computação. Esses conceitos nos desafiam a explorar novas abordagens, desenvolver algoritmos especializados e buscar soluções criativas para problemas complexos. Ao estudar e compreender esses conceitos, avançamos na compreensão dos limites e das possibilidades do mundo computacional em que vivemos.
+
+% ---
+
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+
+% titulo em inglês
+
+
+
+
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{abntex2-modelo-references}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Há diversas soluções prontas para glossário em LaTeX. 
+% Consulte o manual do abnTeX2 para obter sugestões.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+\begin{enumerate}
+    \item http://www.ic.uff.br/isabel/pdf/Computabilidade,%20Hist%C3%B3ria%20e%20Matem%C3%A1tica.pdf
+    \item https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.cin.ufpe.br%2F~rmoc%2FDecidibilidade.doc&wdOrigin=BROWSELINK
+    \item http://wwwp.fc.unesp.br/~simonedp/zipados/TC06.pdf
+    \item https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.cin.ufpe.br%2F~rmoc%2FDecidibilidade.doc&wdOrigin=BROWSELINK
+    \item https://www.math.tecnico.ulisboa.pt/~ccal/TComp/TComp.v31.pdf
+
+\end{enumerate}
+% ---
+% Inicia os apêndices
+% ---
+
+% ---
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+%\anexos
+
+
+\end{document}
